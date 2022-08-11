@@ -1,20 +1,24 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const Flex = styled.div`
+const Wrap = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px;
-`
+  padding: 20px 6%;
+`;
+
+const Title = styled.h2`
+  font-weight: normal;
+`;
 
 function Header() {
 
   return (
-    <Flex>
-      <p>Interview Calendar</p>
-      <button>&#43;</button>
-    </Flex>
+    <Wrap>
+      <Title>Interview Calendar</Title>
+      <button>&#65291;</button>
+    </Wrap>
   )
 }
 

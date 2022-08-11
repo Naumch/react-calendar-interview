@@ -10,7 +10,7 @@ moment.updateLocale('en', {week: {dow: 1}});
 const Wrapper = styled.div`
   max-width: 740px;
   margin: 0 auto;
-  border: 1px solid darkblue;
+  border: 1px solid #e7e7e7;
 `;
 
 function App() {
