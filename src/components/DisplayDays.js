@@ -35,8 +35,8 @@ const CurrentDay = styled.div`
   font-size: 20px;
   font-weight: 500;
   color: #fff;
-  width: 36px;
-  height: 36px;
+  width: 34px;
+  height: 34px;
   margin: 4px auto;
   background-color: #ff2d2d;
   border-radius: 50%;
