@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import moment from 'moment';
+import React from 'react';
 import styled from 'styled-components';
 
 const Flex = styled.div`
@@ -7,15 +6,7 @@ const Flex = styled.div`
   justify-content: space-between;
 `;
 
-function DisplayDays() {
-  const [startingPoint, setStartingPoint] = useState(moment());
-
-  const firstDateOfWeek =  startingPoint.clone().startOf('week');
-  const day = firstDateOfWeek.clone().subtract(1, 'day');
-  const days = [...Array(7)].map(() => day.add(1, 'day').clone());
-
-  const prevHandler = () => setStartingPoint(prev => prev.clone().subtract(1, 'week'));
-  const nextHandler = () => setStartingPoint(next => next.clone().add(1, 'week'));
+function DisplayDays({ days, startingPoint, prevHandler, nextHandler }) {
 
   const result = days.map(day => {
     return (
