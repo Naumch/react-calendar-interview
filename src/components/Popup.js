@@ -58,7 +58,6 @@ const ButtonBold = styled(Button)`
 
 function Popup({ active, setActive, notes, setNotes }) {
   const [valueTime, setValueTime] = useState("");
-  console.log(notes);
 
   return (
     <Modal 

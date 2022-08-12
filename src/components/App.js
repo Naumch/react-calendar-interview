@@ -46,7 +46,7 @@ function App() {
         days={days}
       />
       </div>
-      <Footer />
+      <Footer setStartingPoint={setStartingPoint}/>
       <Popup 
         active={active} 
         setActive={setActive}

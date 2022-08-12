@@ -6,6 +6,18 @@ const Wrap = styled.div`
   display: flex;
   max-height: calc(100vh - 263px);
   overflow-y: scroll;
+  &::-webkit-scrollbar {
+    width: 8px;
+    background-color: #fff;
+  }
+  &::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: #e7e7e7;
+  }
+  &::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 1px rgba(0,0,0,0.2);
+    background-color: #f9f9fd;
+  }
 `;
 
 const FlexColumn = styled.div`
