@@ -4,6 +4,7 @@ import styled from 'styled-components';
 
 const Wrap = styled.div`
   display: flex;
+  overflow-y: scroll;
 `;
 
 const FlexColumn = styled.div`
@@ -49,7 +50,11 @@ function DisplayTime ({ days }) {
     return hours;
   }
 
-  const timesFormat = getHoursArray(moment().startOf('day')).map(hour => {
+  const timesFormat = getHoursArray(moment().startOf('day')).map((hour, i) => {
+    if (i === 0) {
+      return null;  
+    }
+
     return <BoxTimesFormat key={hour.unix()}>{hour.format('HH:mm')}</BoxTimesFormat>;
   })
   

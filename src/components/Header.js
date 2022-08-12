@@ -12,12 +12,12 @@ const Title = styled.h2`
   font-weight: normal;
 `;
 
-function Header() {
+function Header({ setActive }) {
 
   return (
     <Wrap>
       <Title>Interview Calendar</Title>
-      <button>&#65291;</button>
+      <button onClick={() => setActive(true)}>&#65291;</button>
     </Wrap>
   )
 }

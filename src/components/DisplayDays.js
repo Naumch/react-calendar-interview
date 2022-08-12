@@ -6,7 +6,7 @@ const Wrapper = styled.div`
   background-color: #f6f6f6;
   border-top: 1px solid #e7e7e7;
   border-bottom: 1px solid #e7e7e7;
-  padding: 10px 20px 10px 12.5%;
+  padding: 10px 0 10px 12.5%;
 `;
 
 const Flex = styled.div`

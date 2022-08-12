@@ -2,19 +2,24 @@ import React, { useState } from 'react';
 import Header from './Header';
 import DisplayDays from './DisplayDays';
 import DisplayTime from './DisplayTime';
+import Footer from './Footer';
 import styled from 'styled-components';
 import moment from 'moment';
+import Popup from './Popup';
 
 moment.updateLocale('en', {week: {dow: 1}});
 
 const Wrapper = styled.div`
   max-width: 740px;
   margin: 0 auto;
-  border: 1px solid #e7e7e7;
+  border-left: 1px solid #e7e7e7;
+  border-right: 1px solid #e7e7e7;
+  height: 100vh;
 `;
 
 function App() {
   const [startingPoint, setStartingPoint] = useState(moment());
+  const [active, setActive] = useState(false);
 
   const firstDateOfWeek =  startingPoint.clone().startOf('week');
   const day = firstDateOfWeek.clone().subtract(1, 'day');
@@ -25,7 +30,7 @@ function App() {
 
   return (
     <Wrapper>
-      <Header />
+      <Header setActive={setActive}/>
       <DisplayDays 
         days={days}
         startingPoint={startingPoint}
@@ -35,6 +40,8 @@ function App() {
       <DisplayTime 
         days={days}
       />
+      <Footer />
+      <Popup active={active} setActive={setActive}/>
     </Wrapper>
   );
 }
