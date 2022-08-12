@@ -12,14 +12,18 @@ moment.updateLocale('en', {week: {dow: 1}});
 const Wrapper = styled.div`
   max-width: 740px;
   margin: 0 auto;
-  border-left: 1px solid #e7e7e7;
-  border-right: 1px solid #e7e7e7;
+  border: 1px solid #e7e7e7;
   height: 100vh;
+  display: flex;
+  flex-direction: column;
 `;
+
+const initEvents = [];
 
 function App() {
   const [startingPoint, setStartingPoint] = useState(moment());
   const [active, setActive] = useState(false);
+  const [notes, setNotes] = useState(initEvents);
 
   const firstDateOfWeek =  startingPoint.clone().startOf('week');
   const day = firstDateOfWeek.clone().subtract(1, 'day');
@@ -30,6 +34,7 @@ function App() {
 
   return (
     <Wrapper>
+      <div style={{flex: "1 0 auto"}}>
       <Header setActive={setActive}/>
       <DisplayDays 
         days={days}
@@ -40,8 +45,14 @@ function App() {
       <DisplayTime 
         days={days}
       />
+      </div>
       <Footer />
-      <Popup active={active} setActive={setActive}/>
+      <Popup 
+        active={active} 
+        setActive={setActive}
+        notes={notes}
+        setNotes={setNotes}
+      />
     </Wrapper>
   );
 }

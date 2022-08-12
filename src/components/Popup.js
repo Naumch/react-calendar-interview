@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
 const Modal = styled.div`
@@ -56,7 +56,9 @@ const ButtonBold = styled(Button)`
 `;
 
 
-function Popup({ active, setActive }) {
+function Popup({ active, setActive, notes, setNotes }) {
+  const [valueTime, setValueTime] = useState("");
+  console.log(notes);
 
   return (
     <Modal 
@@ -72,10 +74,17 @@ function Popup({ active, setActive }) {
           Enter event time: <br />
           YYYY-MM-DD HH:mm:ss
         </p>
-        <Input />
+        <Input value={valueTime} onChange={e => setValueTime(e.target.value)}/>
         <Flex>
           <ButtonBold onClick={() => setActive(false)}>Cancel</ButtonBold>
-          <Button>OK</Button>
+          <Button 
+            onClick={() => {
+              setNotes([...notes, valueTime]);
+              setValueTime("");
+            }
+          }>
+            OK
+          </Button>
         </Flex>
       </ModalContent>
     </Modal>

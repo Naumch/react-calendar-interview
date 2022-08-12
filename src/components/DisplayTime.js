@@ -4,12 +4,13 @@ import styled from 'styled-components';
 
 const Wrap = styled.div`
   display: flex;
+  max-height: calc(100vh - 263px);
   overflow-y: scroll;
 `;
 
 const FlexColumn = styled.div`
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-rows: 24;
   width: 12.5%;
 `;
 
@@ -76,12 +77,12 @@ function DisplayTime ({ days }) {
   })
 
   return (
-    <Wrap>
-      <FlexColumnMT>
-        {timesFormat}
-      </FlexColumnMT>
-      {timesOfDay}
-    </Wrap>
+      <Wrap>
+        <FlexColumnMT>
+          {timesFormat}
+        </FlexColumnMT>
+        {timesOfDay}
+      </Wrap>
   )
 }
 
