@@ -7,11 +7,10 @@ const Wrap = styled.div`
   max-height: calc(100vh - 263px);
   overflow-y: scroll;
   &::-webkit-scrollbar {
-    width: 8px;
+    width: 6px;
     background-color: #fff;
   }
   &::-webkit-scrollbar-thumb {
-    border-radius: 10px;
     background-color: #e7e7e7;
   }
   &::-webkit-scrollbar-track {
@@ -20,19 +19,20 @@ const Wrap = styled.div`
   }
 `;
 
-const FlexColumn = styled.div`
+const Column = styled.div`
   display: grid;
   grid-template-rows: 24;
   width: 12.5%;
 `;
 
-const FlexColumnMT = styled(FlexColumn)`
+const ColumnMT = styled(Column)`
   margin-top: 9px;
 `;
 
 const Box = styled.div`
   border: 1px solid #e7e7e7;
   height: 90px;
+  background-color: ${props => props.thereIsADel ? "#b4b8ff" : props.thereIsANote ? "#ecedff" : "#fff"};
   &:first-child {
     border-top: none;
   }
@@ -55,12 +55,20 @@ const BoxTimesFormat = styled.div`
   color: #c1c1c1;
 `;
 
-function DisplayTime ({ days }) {
+function DisplayTime ({ days, notes, delUnix, setDelUnix }) {
 
   function getHoursArray(day) {
     const hour = day.clone().subtract(1, 'hour');
     const hours = [...Array(24)].map(() => hour.add(1, 'hour').clone());
     return hours;
+  }
+
+  const thereIsANote = (unix) => {
+    return notes.some(note => note === unix);
+  };
+
+  const thereIsADel = (unix) => {
+    return unix === delUnix;
   }
 
   const timesFormat = getHoursArray(moment().startOf('day')).map((hour, i) => {
@@ -74,25 +82,50 @@ function DisplayTime ({ days }) {
   const timesOfDay = days.map((day, i) => {
     const result = getHoursArray(day).map(hour => {
       if (i === 0) {
-        return <BoxLeft key={hour.unix()}></BoxLeft>
+        return (
+          <BoxLeft 
+            key={hour.unix()} 
+            thereIsANote={thereIsANote(hour.unix())}
+            onClick={() => thereIsANote(hour.unix()) ? setDelUnix(hour.unix()) : setDelUnix(null)}
+            thereIsADel={thereIsADel(hour.unix())}
+          >
+          </BoxLeft>
+        )
       } else if (i === 6) {
-        return <BoxRight key={hour.unix()}></BoxRight>;
+        return (
+          <BoxRight 
+            key={hour.unix()} 
+            thereIsANote={thereIsANote(hour.unix())}
+            onClick={() => thereIsANote(hour.unix()) ? setDelUnix(hour.unix()) : setDelUnix(null)}
+            thereIsADel={thereIsADel(hour.unix())}
+          >  
+          </BoxRight>
+        )
       } else {
-        return <Box key={hour.unix()}></Box>;
+        return (
+          <Box 
+            key={hour.unix()} 
+            thereIsANote={thereIsANote(hour.unix())}
+            onClick={() => thereIsANote(hour.unix()) ? setDelUnix(hour.unix()) : setDelUnix(null)}
+            thereIsADel={thereIsADel(hour.unix())}
+          >
+          </Box>
+        )
       }
     })
+
     return (
-      <FlexColumn key={i}>
+      <Column key={i}>
         {result}
-      </FlexColumn>
+      </Column>
     )
   })
 
   return (
       <Wrap>
-        <FlexColumnMT>
+        <ColumnMT>
           {timesFormat}
-        </FlexColumnMT>
+        </ColumnMT>
         {timesOfDay}
       </Wrap>
   )

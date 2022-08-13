@@ -8,6 +8,7 @@ import moment from 'moment';
 import Popup from './Popup';
 
 moment.updateLocale('en', {week: {dow: 1}});
+window.moment = moment;
 
 const Wrapper = styled.div`
   max-width: 740px;
@@ -18,12 +19,13 @@ const Wrapper = styled.div`
   flex-direction: column;
 `;
 
-const initEvents = [];
+const initEvents = [1660381200, 1660294800, 1660208400, 1660122000, 1660035600, 1660046400];
 
 function App() {
   const [startingPoint, setStartingPoint] = useState(moment());
   const [active, setActive] = useState(false);
   const [notes, setNotes] = useState(initEvents);
+  const [delUnix, setDelUnix] = useState(null);
 
   const firstDateOfWeek =  startingPoint.clone().startOf('week');
   const day = firstDateOfWeek.clone().subtract(1, 'day');
@@ -44,9 +46,18 @@ function App() {
       />
       <DisplayTime 
         days={days}
+        notes={notes}
+        delUnix={delUnix}
+        setDelUnix={setDelUnix}
       />
       </div>
-      <Footer setStartingPoint={setStartingPoint}/>
+      <Footer 
+        setStartingPoint={setStartingPoint}
+        delUnix={delUnix}
+        notes={notes}
+        setNotes={setNotes}
+        setDelUnix={setDelUnix}
+      />
       <Popup 
         active={active} 
         setActive={setActive}

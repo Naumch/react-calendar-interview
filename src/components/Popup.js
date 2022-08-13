@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import moment from 'moment';
 
 const Modal = styled.div`
   height: 100vh;
@@ -59,6 +60,15 @@ const ButtonBold = styled(Button)`
 function Popup({ active, setActive, notes, setNotes }) {
   const [valueTime, setValueTime] = useState("");
 
+  function saveNote(str) {
+    if (!/\d{4}-\d{1,2}-\d{1,2}/.test(str)) {
+      alert('Invalid data format');
+      return;
+    }
+    setNotes([...notes, moment(str).startOf('hour').unix()]); 
+    setActive(false);
+  }
+
   return (
     <Modal 
       onClick={() => setActive(false)} 
@@ -71,14 +81,14 @@ function Popup({ active, setActive, notes, setNotes }) {
         <p style={{fontSize: "14px"}}>
           <b style={{fontSize: "18px"}}>https://calendar.com</b><br />
           Enter event time: <br />
-          YYYY-MM-DD HH:mm:ss
+          YYYY-MM-DD HH:mm
         </p>
         <Input value={valueTime} onChange={e => setValueTime(e.target.value)}/>
         <Flex>
           <ButtonBold onClick={() => setActive(false)}>Cancel</ButtonBold>
           <Button 
             onClick={() => {
-              setNotes([...notes, valueTime]);
+              saveNote(valueTime);
               setValueTime("");
             }
           }>
