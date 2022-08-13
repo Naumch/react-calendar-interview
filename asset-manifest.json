@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/react-calendar-interview/static/css/main.10290c2b.css",
+    "main.js": "/react-calendar-interview/static/js/main.dbf16b19.js",
+    "static/js/787.28cb0dcd.chunk.js": "/react-calendar-interview/static/js/787.28cb0dcd.chunk.js",
+    "index.html": "/react-calendar-interview/index.html",
+    "main.10290c2b.css.map": "/react-calendar-interview/static/css/main.10290c2b.css.map",
+    "main.dbf16b19.js.map": "/react-calendar-interview/static/js/main.dbf16b19.js.map",
+    "787.28cb0dcd.chunk.js.map": "/react-calendar-interview/static/js/787.28cb0dcd.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.10290c2b.css",
+    "static/js/main.dbf16b19.js"
+  ]
+}
